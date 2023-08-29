@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>抽選アプリ</title>
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>席決めなどで役立つ抽選アプリです。</h1>
+            <p>参加者の番号をランダムに決定します。<br>役職者用の席を指定することができます。</p>
+
+            <div class="participantsInfo">
+                <label id="pInfo">参加者人数: <input type="text" name="numberOfParticipants" value="0" id="nParticipants" onchange="makeParticipantsArray()"></label><br>
+                <label>役職者用の番号(カンマ区切りで入力してください): <input type="text" name="numberForManagers" value="0" id="nManagers" onchange="splitNumber()"></label>
+                <p id="noManager">役職者がいない場合は空にしてください。</p>
+            </div>
+
+            <div class="radioButton">
+                <input type="radio" name="position" value="manager" checked>役職者
+                <input type="radio" name="position" value="notManager">非役職者
+            </div>
+
+            <div class="decideNumber">
+                <label>名前：<input type="text" name="name" value="糸井" id="name"></label>
+                <button type="submit" name="seat" onclick="decideNumber()">抽選！</button>
+                <p id="displayNumber"></p>
+            </div>
+        </div>
+    </body>
+    
+</html>
