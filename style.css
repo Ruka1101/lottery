@@ -23,3 +23,11 @@
 .decideNumber {
     padding-top: 10px;
 }
+
+#notDrawn {
+    margin-bottom: 0;
+}
+
+#remainedNum {
+    margin-top: 0;
+}

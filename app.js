@@ -5,7 +5,6 @@ function makeParticipantsArray() {
     for (let i = 1; i < numberOfParticipants + 1; i++) {
         participantsNumber.push(i);
     }
-    console.log(participantsNumber);
 }
 
 // 役職者用番号と非役職者用番号の配列を作成
@@ -16,8 +15,6 @@ function splitNumber() {
         managersNumber = document.getElementById("nManagers").value.split(",").map(Number);
     }
     notManagersNumber = participantsNumber.filter(i => managersNumber.indexOf(i) == -1);
-    console.log(managersNumber);
-    console.log(notManagersNumber);
 }
 
 // 番号を決定
@@ -35,6 +32,8 @@ function decideNumber() {
     let number = 0;
     let rand = 0;
     let name = document.getElementById("name").value;
+    let notDrawnYet = 0;
+    let remained = [];
     if (checkValue == "manager") {
         if (managersNumber.length === 0) {
             document.getElementById('displayNumber').textContent = "役職者用の番号は残っていません。";
@@ -55,5 +54,23 @@ function decideNumber() {
                 notManagersNumber.splice(rand,1);
             }
         }
+    }
+    notDrawnYet = managersNumber.length + notManagersNumber.length;
+    notDrawnMember(notDrawnYet);
+    remained = managersNumber + notManagersNumber;
+    remainedNumber(remained);
+}
+
+// 残り人数を表示
+function notDrawnMember(num) {
+    document.getElementById('notDrawn').textContent = "残り人数: " + num + "人"; 
+}
+
+// 残り番号を表示
+function remainedNumber(rn) {
+    if (rn) {
+        document.getElementById('remainedNum').textContent = "残り番号: " + rn;
+    } else {
+        document.getElementById('remainedNum').textContent = "残り番号はありません。";
     }
 }
