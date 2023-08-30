@@ -46,7 +46,7 @@ function decideNumber() {
     } else {
         if (checkValue == "notManager") {
             if (notManagersNumber.length === 0) {
-                document.getElementById('displayNumber').textContent = "非役職者用の席は残っていません。";
+                document.getElementById('displayNumber').textContent = "非役職者用の番号は残っていません。";
             } else {
                 rand = Math.floor(Math.random() * notManagersNumber.length);
                 number = notManagersNumber[rand];
