@@ -55,10 +55,13 @@ function decideNumber() {
             }
         }
     }
+    // 残り人数を計算
     notDrawnYet = managersNumber.length + notManagersNumber.length;
     notDrawnMember(notDrawnYet);
-    remained = managersNumber + notManagersNumber;
-    remainedNumber(remained);
+    // 残り番号を昇順の配列にする
+    remained = [...new Set([...managersNumber, ...notManagersNumber])];
+    sortedRemained = remained.sort((a, b) => a - b);
+    remainedNumber(sortedRemained);
 }
 
 // 残り人数を表示
@@ -68,9 +71,9 @@ function notDrawnMember(num) {
 
 // 残り番号を表示
 function remainedNumber(rn) {
-    if (rn) {
-        document.getElementById('remainedNum').textContent = "残り番号: " + rn;
-    } else {
+    if (rn.length === 0) {
         document.getElementById('remainedNum').textContent = "残り番号はありません。";
+    } else {
+        document.getElementById('remainedNum').textContent = "残り番号: " + rn;
     }
 }
