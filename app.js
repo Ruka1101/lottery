@@ -1,20 +1,21 @@
 // 参加者人数分の番号の配列を作成
-let participantsNumber = [];
+let participantsArray = [];
 function makeParticipantsArray() {
-    const numberOfParticipants = Number(document.getElementById("nParticipants").value);
-    for (let i = 1; i < numberOfParticipants + 1; i++) {
-        participantsNumber.push(i);
+    const participantsNumber = Number(document.getElementById("participantsNum").value);
+    for (let i = 1; i < participantsNumber + 1; i++) {
+        participantsArray.push(i);
     }
 }
 
 // 役職者用番号と非役職者用番号の配列を作成
-let managersNumber = [];
-let notManagersNumber = [];
+let managersArray = [];
+let notManagersArray = [];
 function splitNumber() {
-    if (document.getElementById("nManagers").value) {
-        managersNumber = document.getElementById("nManagers").value.split(",").map(Number);
+    const managersNumber = document.getElementById("managersNum").value;
+    if (managersNumber) {
+        managersArray = managersNumber.split(",").map(Number);
     }
-    notManagersNumber = participantsNumber.filter(i => managersNumber.indexOf(i) == -1);
+    notManagersArray = participantsArray.filter(i => managersArray.indexOf(i) == -1);
 }
 
 // 番号を決定
@@ -31,42 +32,39 @@ function decideNumber() {
     // 役職者or非役職者を判定し、番号決定
     let number = 0;
     let rand = 0;
-    let name = document.getElementById("name").value;
-    let notDrawnYet = 0;
-    let remained = [];
+    const name = document.getElementById("name").value;
+    let notDrawnNumber = 0;
+    let remainedNumberArray = [];
     if (checkValue == "manager") {
-        if (managersNumber.length === 0) {
-            document.getElementById('displayNumber').textContent = "役職者用の番号は残っていません。";
+        if (managersArray.length === 0) {
+            document.getElementById('displayNum').textContent = "役職者用の番号は残っていません。";
         } else {
-            rand = Math.floor(Math.random() * managersNumber.length);
-            number = managersNumber[rand];
-            document.getElementById('displayNumber').textContent = name + "さん、あなたの番号は" + number + "番です。";
-            managersNumber.splice(rand,1);
+            rand = Math.floor(Math.random() * managersArray.length);
+            number = managersArray[rand];
+            document.getElementById('displayNum').textContent = name + "さん、あなたの番号は" + number + "番です。";
+            managersArray.splice(rand,1);
         }  
     } else {
-        if (checkValue == "notManager") {
-            if (notManagersNumber.length === 0) {
-                document.getElementById('displayNumber').textContent = "非役職者用の番号は残っていません。";
-            } else {
-                rand = Math.floor(Math.random() * notManagersNumber.length);
-                number = notManagersNumber[rand];
-                document.getElementById('displayNumber').textContent = name + "さん、あなたの番号は" + number + "番です。";
-                notManagersNumber.splice(rand,1);
-            }
-        }
+        if (notManagersArray.length === 0) {
+            document.getElementById('displayNum').textContent = "非役職者用の番号は残っていません。";
+        } else {
+            rand = Math.floor(Math.random() * notManagersArray.length);
+            number = notManagersArray[rand];
+            document.getElementById('displayNum').textContent = name + "さん、あなたの番号は" + number + "番です。";
+            notManagersArray.splice(rand,1);
+        } 
     }
     // 残り人数を計算
-    notDrawnYet = managersNumber.length + notManagersNumber.length;
-    notDrawnMember(notDrawnYet);
+    notDrawnNumber = managersArray.length + notManagersArray.length;
+    remainedMember(notDrawnNumber);
     // 残り番号を昇順の配列にする
-    remained = [...new Set([...managersNumber, ...notManagersNumber])];
-    sortedRemained = remained.sort((a, b) => a - b);
-    remainedNumber(sortedRemained);
+    remainedNumberArray = [...new Set([...managersArray, ...notManagersArray])].sort((a, b) => a - b);
+    remainedNumber(remainedNumberArray);
 }
 
 // 残り人数を表示
-function notDrawnMember(num) {
-    document.getElementById('notDrawn').textContent = "残り人数: " + num + "人"; 
+function remainedMember(num) {
+    document.getElementById('remainedMem').textContent = "残り人数: " + num + "人"; 
 }
 
 // 残り番号を表示

@@ -14,8 +14,8 @@
             <p>参加者の番号をランダムに決定します。<br>役職者用の席を指定することができます。</p>
 
             <div class="participantsInfo">
-                <label id="pInfo">参加者人数: <input type="text" name="numberOfParticipants" value="0" id="nParticipants" onchange="makeParticipantsArray()"></label><br>
-                <label>役職者用の番号(カンマ区切りで入力してください): <input type="text" name="numberForManagers" value="0" id="nManagers" onchange="splitNumber()"></label>
+                <label id="pInfo">参加者人数: <input type="text" name="participantsNumber" value="0" id="participantsNum" onchange="makeParticipantsArray()"></label><br>
+                <label>役職者用の番号(カンマ区切りで入力してください): <input type="text" name="managersNumber" value="0" id="managersNum" onchange="splitNumber()"></label>
                 <p id="noManager">役職者がいない場合は空にしてください。</p>
             </div>
 
@@ -27,8 +27,8 @@
             <div class="decideNumber">
                 <label>名前：<input type="text" name="name" value="糸井" id="name"></label>
                 <button type="submit" name="seat" onclick="decideNumber()">抽選！</button>
-                <p id="displayNumber"></p>
-                <p id="notDrawn"></p>
+                <p id="displayNum"></p>
+                <p id="remainedMem"></p>
                 <p id="remainedNum"></p>               
             </div>
         </div>
